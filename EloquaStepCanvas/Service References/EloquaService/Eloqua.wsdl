@@ -1,0 +1,2196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="https://secure.eloqua.com/API/1.2" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Eloqua" targetNamespace="https://secure.eloqua.com/API/1.2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="EloquaService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10 />
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="https://secure.eloqua.com/API/1.2">
+      <xsd:element name="ListEntityTypes">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ListEntityTypesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="ListEntityTypesResult" nillable="true" type="tns:ListEntityTypesResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ListEntityTypesResult">
+        <xsd:sequence>
+          <xsd:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="EntityTypes" nillable="true" type="q1:ArrayOfstring" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ListEntityTypesResult" nillable="true" type="tns:ListEntityTypesResult" />
+      <xsd:complexType name="UnexpectedErrorFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="UnexpectedErrorFault" nillable="true" type="tns:UnexpectedErrorFault" />
+      <xsd:element name="DescribeEntityType">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="globalEntityType" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DescribeEntityTypeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="DescribeEntityTypeResult" nillable="true" type="tns:DescribeEntityTypeResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="DescribeEntityTypeResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="EntityTypes" nillable="true" type="tns:ArrayOfEntityType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DescribeEntityTypeResult" nillable="true" type="tns:DescribeEntityTypeResult" />
+      <xsd:complexType name="ArrayOfEntityType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="EntityType" nillable="true" type="tns:EntityType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfEntityType" nillable="true" type="tns:ArrayOfEntityType" />
+      <xsd:complexType name="EntityType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ID" type="xsd:int" />
+          <xsd:element minOccurs="0" name="Name" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Type" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="EntityType" nillable="true" type="tns:EntityType" />
+      <xsd:complexType name="InvalidTypeFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="InvalidTypeFault" nillable="true" type="tns:InvalidTypeFault" />
+      <xsd:element name="DescribeEntity">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="entityType" nillable="true" type="tns:EntityType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DescribeEntityResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="DescribeEntityResult" nillable="true" type="tns:DescribeEntityResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="DescribeEntityResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Fields" nillable="true" type="tns:ArrayOfDynamicEntityFieldDefinition" />
+          <xsd:element minOccurs="0" name="IsCreateable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsDeletable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsQueryable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsRetrievable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsUpdateable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="Name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DescribeEntityResult" nillable="true" type="tns:DescribeEntityResult" />
+      <xsd:complexType name="ArrayOfDynamicEntityFieldDefinition">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DynamicEntityFieldDefinition" nillable="true" type="tns:DynamicEntityFieldDefinition" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfDynamicEntityFieldDefinition" nillable="true" type="tns:ArrayOfDynamicEntityFieldDefinition" />
+      <xsd:complexType name="DynamicEntityFieldDefinition">
+        <xsd:sequence>
+          <xsd:element xmlns:q2="http://schemas.datacontract.org/2004/07/Eloqua.Infrastructure.Core" minOccurs="0" name="DataType" type="q2:DataType" />
+          <xsd:element minOccurs="0" name="DefaultValue" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="DisplayName" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="InternalName" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="IsCustom" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsRequired" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsWriteable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="Length" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DynamicEntityFieldDefinition" nillable="true" type="tns:DynamicEntityFieldDefinition" />
+      <xsd:element name="Create">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="entities" nillable="true" type="tns:ArrayOfDynamicEntity" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfDynamicEntity">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DynamicEntity" nillable="true" type="tns:DynamicEntity" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfDynamicEntity" nillable="true" type="tns:ArrayOfDynamicEntity" />
+      <xsd:complexType name="DynamicEntity">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="EntityType" nillable="true" type="tns:EntityType" />
+          <xsd:element minOccurs="0" name="FieldValueCollection" nillable="true" type="tns:DynamicEntityFields" />
+          <xsd:element minOccurs="0" name="Id" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DynamicEntity" nillable="true" type="tns:DynamicEntity" />
+      <xsd:complexType name="DynamicEntityFields">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="EntityFields">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="InternalName" nillable="true" type="xsd:string" />
+                <xsd:element name="Value" nillable="true" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DynamicEntityFields" nillable="true" type="tns:DynamicEntityFields" />
+      <xsd:element name="CreateResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="CreateResult" nillable="true" type="tns:ArrayOfCreateResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfCreateResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="CreateResult" nillable="true" type="tns:CreateResult" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfCreateResult" nillable="true" type="tns:ArrayOfCreateResult" />
+      <xsd:complexType name="CreateResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="EntityType" nillable="true" type="tns:EntityType" />
+          <xsd:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfError" />
+          <xsd:element minOccurs="0" name="ID" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="CreateResult" nillable="true" type="tns:CreateResult" />
+      <xsd:complexType name="ArrayOfError">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Error" nillable="true" type="tns:Error" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfError" nillable="true" type="tns:ArrayOfError" />
+      <xsd:complexType name="Error">
+        <xsd:sequence>
+          <xsd:element xmlns:q3="http://schemas.datacontract.org/2004/07/EloquaAPI.Data" minOccurs="0" name="ErrorCode" type="q3:ErrorCode" />
+          <xsd:element minOccurs="0" name="Message" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="Error" nillable="true" type="tns:Error" />
+      <xsd:complexType name="BatchSizeExceededFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="BatchSizeExceededFault" nillable="true" type="tns:BatchSizeExceededFault" />
+      <xsd:element name="Update">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="entities" nillable="true" type="tns:ArrayOfDynamicEntity" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="UpdateResult" nillable="true" type="tns:ArrayOfUpdateResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfUpdateResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="UpdateResult" nillable="true" type="tns:UpdateResult" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfUpdateResult" nillable="true" type="tns:ArrayOfUpdateResult" />
+      <xsd:complexType name="UpdateResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="EntityType" nillable="true" type="tns:EntityType" />
+          <xsd:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfError" />
+          <xsd:element minOccurs="0" name="ID" type="xsd:int" />
+          <xsd:element minOccurs="0" name="Success" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="UpdateResult" nillable="true" type="tns:UpdateResult" />
+      <xsd:element name="Delete">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="entityType" nillable="true" type="tns:EntityType" />
+            <xsd:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ids" nillable="true" type="q4:ArrayOfint" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="DeleteResult" nillable="true" type="tns:ArrayOfDeleteResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfDeleteResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DeleteResult" nillable="true" type="tns:DeleteResult" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfDeleteResult" nillable="true" type="tns:ArrayOfDeleteResult" />
+      <xsd:complexType name="DeleteResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="EntityType" nillable="true" type="tns:EntityType" />
+          <xsd:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfError" />
+          <xsd:element minOccurs="0" name="ID" type="xsd:int" />
+          <xsd:element minOccurs="0" name="Success" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DeleteResult" nillable="true" type="tns:DeleteResult" />
+      <xsd:element name="Retrieve">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="entityType" nillable="true" type="tns:EntityType" />
+            <xsd:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ids" nillable="true" type="q5:ArrayOfint" />
+            <xsd:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fieldNames" nillable="true" type="q6:ArrayOfstring" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RetrieveResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="RetrieveResult" nillable="true" type="tns:ArrayOfDynamicEntity" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Query">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="eloquaType" nillable="true" type="tns:EntityType" />
+            <xsd:element minOccurs="0" name="searchQuery" nillable="true" type="xsd:string" />
+            <xsd:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fieldNames" nillable="true" type="q7:ArrayOfstring" />
+            <xsd:element minOccurs="0" name="pageNumber" type="xsd:int" />
+            <xsd:element minOccurs="0" name="pageSize" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="QueryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="QueryResult" nillable="true" type="tns:DynamicEntityQueryResults" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="DynamicEntityQueryResults">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Entities" nillable="true" type="tns:ArrayOfDynamicEntity" />
+          <xsd:element minOccurs="0" name="TotalPages" type="xsd:int" />
+          <xsd:element minOccurs="0" name="TotalRecords" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DynamicEntityQueryResults" nillable="true" type="tns:DynamicEntityQueryResults" />
+      <xsd:complexType name="QueryTooLargeFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="QueryTooLargeFault" nillable="true" type="tns:QueryTooLargeFault" />
+      <xsd:complexType name="OperationTimeIntervalFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="OperationTimeIntervalFault" nillable="true" type="tns:OperationTimeIntervalFault" />
+      <xsd:complexType name="InvalidQueryFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="InvalidQueryFault" nillable="true" type="tns:InvalidQueryFault" />
+      <xsd:element name="ListAssetTypes">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ListAssetTypesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="ListAssetTypesResult" nillable="true" type="tns:ListAssetTypesResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ListAssetTypesResult">
+        <xsd:sequence>
+          <xsd:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AssetTypes" nillable="true" type="q8:ArrayOfstring" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ListAssetTypesResult" nillable="true" type="tns:ListAssetTypesResult" />
+      <xsd:element name="DescribeAssetType">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="assetType" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DescribeAssetTypeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="DescribeAssetTypeResult" nillable="true" type="tns:DescribeAssetTypeResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="DescribeAssetTypeResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="AssetTypes" nillable="true" type="tns:ArrayOfAssetType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DescribeAssetTypeResult" nillable="true" type="tns:DescribeAssetTypeResult" />
+      <xsd:complexType name="ArrayOfAssetType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="AssetType" nillable="true" type="tns:AssetType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfAssetType" nillable="true" type="tns:ArrayOfAssetType" />
+      <xsd:complexType name="AssetType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ID" type="xsd:int" />
+          <xsd:element minOccurs="0" name="Name" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Type" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="AssetType" nillable="true" type="tns:AssetType" />
+      <xsd:element name="DescribeAsset">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="assetType" nillable="true" type="tns:AssetType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DescribeAssetResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="DescribeAssetResult" nillable="true" type="tns:DescribeAssetResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="DescribeAssetResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Fields" nillable="true" type="tns:ArrayOfDynamicAssetFieldDefinition" />
+          <xsd:element minOccurs="0" name="IsCreateable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsDeletable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsQueryable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsRetrievable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsUpdateable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="Name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DescribeAssetResult" nillable="true" type="tns:DescribeAssetResult" />
+      <xsd:complexType name="ArrayOfDynamicAssetFieldDefinition">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DynamicAssetFieldDefinition" nillable="true" type="tns:DynamicAssetFieldDefinition" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfDynamicAssetFieldDefinition" nillable="true" type="tns:ArrayOfDynamicAssetFieldDefinition" />
+      <xsd:complexType name="DynamicAssetFieldDefinition">
+        <xsd:sequence>
+          <xsd:element xmlns:q9="http://schemas.datacontract.org/2004/07/EloquaAPI" minOccurs="0" name="DataType" type="q9:AssetFieldDataType" />
+          <xsd:element minOccurs="0" name="DisplayName" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="InternalName" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="IsRequired" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsWriteable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="Length" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DynamicAssetFieldDefinition" nillable="true" type="tns:DynamicAssetFieldDefinition" />
+      <xsd:element name="CreateAsset">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="assets" nillable="true" type="tns:ArrayOfDynamicAsset" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfDynamicAsset">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DynamicAsset" nillable="true" type="tns:DynamicAsset" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfDynamicAsset" nillable="true" type="tns:ArrayOfDynamicAsset" />
+      <xsd:complexType name="DynamicAsset">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="AssetType" nillable="true" type="tns:AssetType" />
+          <xsd:element minOccurs="0" name="FieldValueCollection" nillable="true" type="tns:DynamicAssetFields" />
+          <xsd:element minOccurs="0" name="Id" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DynamicAsset" nillable="true" type="tns:DynamicAsset" />
+      <xsd:complexType name="DynamicAssetFields">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="AssetFields">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="InternalName" nillable="true" type="xsd:string" />
+                <xsd:element name="Value" nillable="true" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DynamicAssetFields" nillable="true" type="tns:DynamicAssetFields" />
+      <xsd:element name="CreateAssetResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="CreateAssetResult" nillable="true" type="tns:ArrayOfCreateAssetResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfCreateAssetResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="CreateAssetResult" nillable="true" type="tns:CreateAssetResult" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfCreateAssetResult" nillable="true" type="tns:ArrayOfCreateAssetResult" />
+      <xsd:complexType name="CreateAssetResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="AssetType" nillable="true" type="tns:AssetType" />
+          <xsd:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfError" />
+          <xsd:element minOccurs="0" name="ID" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="CreateAssetResult" nillable="true" type="tns:CreateAssetResult" />
+      <xsd:element name="UpdateAsset">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="assets" nillable="true" type="tns:ArrayOfDynamicAsset" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateAssetResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="UpdateAssetResult" nillable="true" type="tns:ArrayOfUpdateAssetResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfUpdateAssetResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="UpdateAssetResult" nillable="true" type="tns:UpdateAssetResult" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfUpdateAssetResult" nillable="true" type="tns:ArrayOfUpdateAssetResult" />
+      <xsd:complexType name="UpdateAssetResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="AssetType" nillable="true" type="tns:AssetType" />
+          <xsd:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfError" />
+          <xsd:element minOccurs="0" name="ID" type="xsd:int" />
+          <xsd:element minOccurs="0" name="Success" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="UpdateAssetResult" nillable="true" type="tns:UpdateAssetResult" />
+      <xsd:element name="DeleteAsset">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="assetType" nillable="true" type="tns:AssetType" />
+            <xsd:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ids" nillable="true" type="q10:ArrayOfint" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteAssetResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="DeleteAssetResult" nillable="true" type="tns:ArrayOfDeleteAssetResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfDeleteAssetResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DeleteAssetResult" nillable="true" type="tns:DeleteAssetResult" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfDeleteAssetResult" nillable="true" type="tns:ArrayOfDeleteAssetResult" />
+      <xsd:complexType name="DeleteAssetResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="AssetType" nillable="true" type="tns:AssetType" />
+          <xsd:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfError" />
+          <xsd:element minOccurs="0" name="ID" type="xsd:int" />
+          <xsd:element minOccurs="0" name="Success" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DeleteAssetResult" nillable="true" type="tns:DeleteAssetResult" />
+      <xsd:element name="RetrieveAsset">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="assetType" nillable="true" type="tns:AssetType" />
+            <xsd:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ids" nillable="true" type="q11:ArrayOfint" />
+            <xsd:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fieldNames" nillable="true" type="q12:ArrayOfstring" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RetrieveAssetResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="RetrieveAssetResult" nillable="true" type="tns:ArrayOfDynamicAsset" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ListGroupMembership">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="entity" nillable="true" type="tns:DynamicEntity" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ListGroupMembershipResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="ListGroupMembershipResult" nillable="true" type="tns:ArrayOfDynamicAsset" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="InvalidEntityFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="InvalidEntityFault" nillable="true" type="tns:InvalidEntityFault" />
+      <xsd:element name="AddGroupMember">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="entity" nillable="true" type="tns:DynamicEntity" />
+            <xsd:element minOccurs="0" name="asset" nillable="true" type="tns:DynamicAsset" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddGroupMemberResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="AddGroupMemberResult" nillable="true" type="tns:GroupMemberResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="GroupMemberResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Errors" nillable="true" type="tns:ArrayOfError" />
+          <xsd:element minOccurs="0" name="Success" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="GroupMemberResult" nillable="true" type="tns:GroupMemberResult" />
+      <xsd:complexType name="InvalidAssetFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="InvalidAssetFault" nillable="true" type="tns:InvalidAssetFault" />
+      <xsd:element name="RemoveGroupMember">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="entity" nillable="true" type="tns:DynamicEntity" />
+            <xsd:element minOccurs="0" name="asset" nillable="true" type="tns:DynamicAsset" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RemoveGroupMemberResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="RemoveGroupMemberResult" nillable="true" type="tns:GroupMemberResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ListActivityTypes">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ListActivityTypesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="ListActivityTypesResult" nillable="true" type="tns:ListActivityTypesResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ListActivityTypesResult">
+        <xsd:sequence>
+          <xsd:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ActivityTypes" nillable="true" type="q13:ArrayOfstring" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ListActivityTypesResult" nillable="true" type="tns:ListActivityTypesResult" />
+      <xsd:element name="DescribeActivityType">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="activityType" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DescribeActivityTypeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="DescribeActivityTypeResult" nillable="true" type="tns:DescribeActivityTypeResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="DescribeActivityTypeResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ActivityTypes" nillable="true" type="tns:ArrayOfEloquaActivityType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DescribeActivityTypeResult" nillable="true" type="tns:DescribeActivityTypeResult" />
+      <xsd:complexType name="ArrayOfEloquaActivityType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="EloquaActivityType" nillable="true" type="tns:EloquaActivityType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfEloquaActivityType" nillable="true" type="tns:ArrayOfEloquaActivityType" />
+      <xsd:complexType name="EloquaActivityType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Id" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Name" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Type" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="EloquaActivityType" nillable="true" type="tns:EloquaActivityType" />
+      <xsd:element name="DescribeActivity">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="ActivityType" nillable="true" type="tns:EloquaActivityType" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DescribeActivityResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="DescribeActivityResult" nillable="true" type="tns:DescribeActivityResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="DescribeActivityResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Fields" nillable="true" type="tns:ArrayOfDynamicActivityFieldDefinition" />
+          <xsd:element minOccurs="0" name="Name" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q14="http://schemas.datacontract.org/2004/07/EloquaAPI" minOccurs="0" name="RelatedAssetType" type="q14:EloquaAssetType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DescribeActivityResult" nillable="true" type="tns:DescribeActivityResult" />
+      <xsd:complexType name="ArrayOfDynamicActivityFieldDefinition">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DynamicActivityFieldDefinition" nillable="true" type="tns:DynamicActivityFieldDefinition" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfDynamicActivityFieldDefinition" nillable="true" type="tns:ArrayOfDynamicActivityFieldDefinition" />
+      <xsd:complexType name="DynamicActivityFieldDefinition">
+        <xsd:sequence>
+          <xsd:element xmlns:q15="http://schemas.datacontract.org/2004/07/EloquaAPI" minOccurs="0" name="DataType" type="q15:ActivityFieldDataType" />
+          <xsd:element minOccurs="0" name="DisplayName" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="InternalName" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="IsRequired" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="IsWriteable" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="Length" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DynamicActivityFieldDefinition" nillable="true" type="tns:DynamicActivityFieldDefinition" />
+      <xsd:element name="GetActivities">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="dynamicEntity" nillable="true" type="tns:DynamicEntity" />
+            <xsd:element xmlns:q16="http://schemas.datacontract.org/2004/07/EloquaNet.Activity" minOccurs="0" name="activityTypes" nillable="true" type="q16:ArrayOfActivityType" />
+            <xsd:element minOccurs="0" name="startDate" type="xsd:dateTime" />
+            <xsd:element minOccurs="0" name="endDate" type="xsd:dateTime" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetActivitiesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="GetActivitiesResult" nillable="true" type="tns:ArrayOfDynamicActivity" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArrayOfDynamicActivity">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="DynamicActivity" nillable="true" type="tns:DynamicActivity" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfDynamicActivity" nillable="true" type="tns:ArrayOfDynamicActivity" />
+      <xsd:complexType name="DynamicActivity">
+        <xsd:sequence>
+          <xsd:element xmlns:q17="http://schemas.datacontract.org/2004/07/EloquaNet.Activity" minOccurs="0" name="ActivityType" type="q17:ActivityType" />
+          <xsd:element minOccurs="0" name="Date" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" name="DynamicAsset" nillable="true" type="tns:DynamicAsset" />
+          <xsd:element minOccurs="0" name="DynamicEntity" nillable="true" type="tns:DynamicEntity" />
+          <xsd:element minOccurs="0" name="FieldValueCollection" nillable="true" type="tns:DynamicActivityFields" />
+          <xsd:element minOccurs="0" name="Id" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DynamicActivity" nillable="true" type="tns:DynamicActivity" />
+      <xsd:complexType name="DynamicActivityFields">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+          </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ActivityFields">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="InternalName" nillable="true" type="xsd:string" />
+                <xsd:element name="Value" nillable="true" type="xsd:string" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DynamicActivityFields" nillable="true" type="tns:DynamicActivityFields" />
+      <xsd:complexType name="InvalidDateRangeFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="InvalidDateRangeFault" nillable="true" type="tns:InvalidDateRangeFault" />
+      <xsd:element name="GetEmailActivitiesForRecipients">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="emailAddresses" nillable="true" type="q18:ArrayOfstring" />
+            <xsd:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="emailIDs" nillable="true" type="q19:ArrayOfint" />
+            <xsd:element minOccurs="0" name="pageSize" type="xsd:int" />
+            <xsd:element minOccurs="0" name="requestedPage" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetEmailActivitiesForRecipientsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="GetEmailActivitiesForRecipientsResult" nillable="true" type="tns:ArrayOfDynamicActivity" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="InvalidArgumentFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="InvalidArgumentFault" nillable="true" type="tns:InvalidArgumentFault" />
+      <xsd:element name="SendQuickEmail">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="asset" nillable="true" type="tns:DynamicAsset" />
+            <xsd:element minOccurs="0" name="entity" nillable="true" type="tns:DynamicEntity" />
+            <xsd:element minOccurs="0" name="options" nillable="true" type="tns:QuickSendEmailOption" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="QuickSendEmailOption">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="AllowResend" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="SendToBouncebacked" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="SendToEmailGroupUnsubscribed" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="SendToMasterExcluded" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="SendToUnsubscribed" type="xsd:boolean" />
+          <xsd:element minOccurs="0" name="SenderId" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="QuickSendEmailOption" nillable="true" type="tns:QuickSendEmailOption" />
+      <xsd:element name="SendQuickEmailResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="SendQuickEmailResult" nillable="true" type="tns:SendEmailResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="SendEmailResult">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="DeploymentId" type="xsd:int" />
+          <xsd:element minOccurs="0" name="Message" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q20="http://schemas.datacontract.org/2004/07/EloquaAPI" minOccurs="0" name="Status" type="q20:SendEmailStatus" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="SendEmailResult" nillable="true" type="tns:SendEmailResult" />
+      <xsd:complexType name="RecordNotFoundFault">
+        <xsd:sequence />
+      </xsd:complexType>
+      <xsd:element name="RecordNotFoundFault" nillable="true" type="tns:RecordNotFoundFault" />
+      <xsd:element name="GetQuickEmailStatus">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="deploymentId" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetQuickEmailStatusResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="GetQuickEmailStatusResult" nillable="true" type="tns:SendEmailResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xsd:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+      <xsd:complexType name="ArrayOfstring">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+      <xsd:complexType name="ArrayOfint">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="int" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" />
+    </xsd:schema>
+    <xsd:schema xmlns:tns="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" elementFormDefault="qualified" targetNamespace="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation">
+      <xsd:complexType name="ValidationFault">
+        <xsd:sequence>
+          <xsd:element xmlns:q21="http://schemas.datacontract.org/2004/07/Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF" minOccurs="0" name="Details" nillable="true" type="q21:ArrayOfValidationDetail" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ValidationFault" nillable="true" type="tns:ValidationFault" />
+    </xsd:schema>
+    <xsd:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF">
+      <xsd:complexType name="ArrayOfValidationDetail">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ValidationDetail" nillable="true" type="tns:ValidationDetail" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfValidationDetail" nillable="true" type="tns:ArrayOfValidationDetail" />
+      <xsd:complexType name="ValidationDetail">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Key" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Message" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Tag" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ValidationDetail" nillable="true" type="tns:ValidationDetail" />
+    </xsd:schema>
+    <xsd:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Eloqua.Infrastructure.Core" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Eloqua.Infrastructure.Core">
+      <xsd:simpleType name="DataType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Number">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="Text">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="LargeText">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="YesNo">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="Date">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="Numeric">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="DataType" nillable="true" type="tns:DataType" />
+    </xsd:schema>
+    <xsd:schema xmlns:tns="http://schemas.datacontract.org/2004/07/EloquaAPI.Data" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EloquaAPI.Data">
+      <xsd:simpleType name="ErrorCode">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="UnexpectedException" />
+          <xsd:enumeration value="UnexpectedDataException" />
+          <xsd:enumeration value="UnauthorizedAction" />
+          <xsd:enumeration value="DuplicateValue" />
+          <xsd:enumeration value="ValidationIssue" />
+          <xsd:enumeration value="InvalidDataType" />
+          <xsd:enumeration value="RequiredFieldNotSpecified" />
+          <xsd:enumeration value="MaximumLengthExceeded" />
+          <xsd:enumeration value="ItemNotFound" />
+          <xsd:enumeration value="ReadOnlyField" />
+          <xsd:enumeration value="InvalidField" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="ErrorCode" nillable="true" type="tns:ErrorCode" />
+    </xsd:schema>
+    <xsd:schema xmlns:tns="http://schemas.datacontract.org/2004/07/EloquaAPI" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EloquaAPI">
+      <xsd:simpleType name="AssetFieldDataType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="String" />
+          <xsd:enumeration value="Integer" />
+          <xsd:enumeration value="DateTime" />
+          <xsd:enumeration value="Boolean" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="AssetFieldDataType" nillable="true" type="tns:AssetFieldDataType" />
+      <xsd:simpleType name="ActivityFieldDataType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="String" />
+          <xsd:enumeration value="Integer" />
+          <xsd:enumeration value="DateTime" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="ActivityFieldDataType" nillable="true" type="tns:ActivityFieldDataType" />
+      <xsd:simpleType name="EloquaAssetType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="DataExport" />
+          <xsd:enumeration value="DataImport" />
+          <xsd:enumeration value="Email" />
+          <xsd:enumeration value="EmailHeader" />
+          <xsd:enumeration value="EmailFooter" />
+          <xsd:enumeration value="ContactGroup" />
+          <xsd:enumeration value="CompanyGroup" />
+          <xsd:enumeration value="ProspectGroup" />
+          <xsd:enumeration value="Form" />
+          <xsd:enumeration value="None" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="EloquaAssetType" nillable="true" type="tns:EloquaAssetType" />
+      <xsd:simpleType name="SendEmailStatus">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Unknown" />
+          <xsd:enumeration value="Complete" />
+          <xsd:enumeration value="Failure" />
+          <xsd:enumeration value="Queued" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="SendEmailStatus" nillable="true" type="tns:SendEmailStatus" />
+    </xsd:schema>
+    <xsd:schema xmlns:tns="http://schemas.datacontract.org/2004/07/EloquaNet.Activity" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EloquaNet.Activity">
+      <xsd:complexType name="ArrayOfActivityType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ActivityType" type="tns:ActivityType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfActivityType" nillable="true" type="tns:ArrayOfActivityType" />
+      <xsd:simpleType name="ActivityType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="EmailOpen">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="EmailSend">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="EmailClickThrough">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="EmailSubscribe">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="EmailUnsubscribe">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="FormSubmit">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="WebVisit">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="EmailBounceback">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="CampaignMembership">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="ExternalActivity">
+            <xsd:annotation>
+              <xsd:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">18</EnumerationValue>
+              </xsd:appinfo>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="ActivityType" nillable="true" type="tns:ActivityType" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EloquaService_ListEntityTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListEntityTypes" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListEntityTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListEntityTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListEntityTypes_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeEntityType_InputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeEntityType" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeEntityType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeEntityTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeEntityType_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeEntityType_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeEntityType_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q22:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeEntity_InputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeEntity" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeEntity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeEntityResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeEntity_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeEntity_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeEntity_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q23="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q23:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Create_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q24:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Create_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Create_BatchSizeExceededFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BatchSizeExceededFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Create_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Update_InputMessage">
+    <wsdl:part name="parameters" element="tns:Update" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Update_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Update_BatchSizeExceededFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BatchSizeExceededFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Update_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q25="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q25:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Update_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Update_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Delete_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Delete_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Delete_BatchSizeExceededFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BatchSizeExceededFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Delete_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q26:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Retrieve_InputMessage">
+    <wsdl:part name="parameters" element="tns:Retrieve" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Retrieve_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Retrieve_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Retrieve_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Retrieve_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q27="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q27:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Retrieve_BatchSizeExceededFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BatchSizeExceededFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Query_InputMessage">
+    <wsdl:part name="parameters" element="tns:Query" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Query_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Query_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Query_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Query_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q28="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q28:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Query_QueryTooLargeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:QueryTooLargeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Query_OperationTimeIntervalFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:OperationTimeIntervalFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_Query_InvalidQueryFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidQueryFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListAssetTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListAssetTypes" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListAssetTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListAssetTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListAssetTypes_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeAssetType_InputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeAssetType" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeAssetType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeAssetTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeAssetType_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeAssetType_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeAssetType_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q29="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q29:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeAsset" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeAsset_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeAsset_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q30="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q30:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeAsset_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_CreateAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAsset" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_CreateAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_CreateAsset_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q31="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q31:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_CreateAsset_BatchSizeExceededFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BatchSizeExceededFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_CreateAsset_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_CreateAsset_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_UpdateAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAsset" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_UpdateAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_UpdateAsset_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_UpdateAsset_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q32="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q32:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_UpdateAsset_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_UpdateAsset_BatchSizeExceededFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BatchSizeExceededFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DeleteAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAsset" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DeleteAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DeleteAsset_BatchSizeExceededFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BatchSizeExceededFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DeleteAsset_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q33="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q33:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DeleteAsset_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DeleteAsset_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RetrieveAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveAsset" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RetrieveAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RetrieveAsset_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q34="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q34:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RetrieveAsset_BatchSizeExceededFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:BatchSizeExceededFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RetrieveAsset_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RetrieveAsset_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListGroupMembership_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListGroupMembership" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListGroupMembership_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListGroupMembershipResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListGroupMembership_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListGroupMembership_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListGroupMembership_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q35="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q35:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListGroupMembership_InvalidEntityFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidEntityFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_AddGroupMember_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddGroupMember" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_AddGroupMember_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddGroupMemberResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_AddGroupMember_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_AddGroupMember_InvalidAssetFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidAssetFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_AddGroupMember_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q36="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q36:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_AddGroupMember_InvalidEntityFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidEntityFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_AddGroupMember_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RemoveGroupMember_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveGroupMember" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RemoveGroupMember_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveGroupMemberResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RemoveGroupMember_InvalidEntityFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidEntityFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RemoveGroupMember_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RemoveGroupMember_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q37="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q37:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RemoveGroupMember_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_RemoveGroupMember_InvalidAssetFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidAssetFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListActivityTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListActivityTypes" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListActivityTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListActivityTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_ListActivityTypes_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeActivityType_InputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeActivityType" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeActivityType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeActivityTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeActivityType_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeActivityType_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeActivityType_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q38="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q38:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeActivity_InputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeActivity" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeActivity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DescribeActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeActivity_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeActivity_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_DescribeActivity_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q39="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q39:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetActivities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivities" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetActivities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetActivities_InvalidTypeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidTypeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetActivities_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetActivities_InvalidDateRangeFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidDateRangeFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetActivities_ValidationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q40="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" name="detail" element="q40:ValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetEmailActivitiesForRecipients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmailActivitiesForRecipients" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetEmailActivitiesForRecipients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmailActivitiesForRecipientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetEmailActivitiesForRecipients_InvalidArgumentFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidArgumentFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetEmailActivitiesForRecipients_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_SendQuickEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendQuickEmail" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_SendQuickEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendQuickEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_SendQuickEmail_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_SendQuickEmail_RecordNotFoundFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:RecordNotFoundFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetQuickEmailStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuickEmailStatus" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetQuickEmailStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuickEmailStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetQuickEmailStatus_RecordNotFoundFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:RecordNotFoundFault" />
+  </wsdl:message>
+  <wsdl:message name="EloquaService_GetQuickEmailStatus_UnexpectedErrorFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:UnexpectedErrorFault" />
+  </wsdl:message>
+  <wsdl:portType name="EloquaService">
+    <wsdl:operation name="ListEntityTypes">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/ListEntityTypes" message="tns:EloquaService_ListEntityTypes_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/ListEntityTypesResponse" message="tns:EloquaService_ListEntityTypes_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/ListEntityTypesUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_ListEntityTypes_UnexpectedErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DescribeEntityType">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntityType" message="tns:EloquaService_DescribeEntityType_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntityTypeResponse" message="tns:EloquaService_DescribeEntityType_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntityTypeInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_DescribeEntityType_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntityTypeUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_DescribeEntityType_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntityTypeValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_DescribeEntityType_ValidationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DescribeEntity">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntity" message="tns:EloquaService_DescribeEntity_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntityResponse" message="tns:EloquaService_DescribeEntity_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntityInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_DescribeEntity_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntityUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_DescribeEntity_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntityValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_DescribeEntity_ValidationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/Create" message="tns:EloquaService_Create_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/CreateResponse" message="tns:EloquaService_Create_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/CreateValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_Create_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/CreateUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_Create_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/CreateBatchSizeExceededFaultFault" name="BatchSizeExceededFaultFault" message="tns:EloquaService_Create_BatchSizeExceededFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/CreateInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_Create_InvalidTypeFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/Update" message="tns:EloquaService_Update_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/UpdateResponse" message="tns:EloquaService_Update_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/UpdateBatchSizeExceededFaultFault" name="BatchSizeExceededFaultFault" message="tns:EloquaService_Update_BatchSizeExceededFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/UpdateValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_Update_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/UpdateInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_Update_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/UpdateUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_Update_UnexpectedErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/Delete" message="tns:EloquaService_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DeleteResponse" message="tns:EloquaService_Delete_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DeleteUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_Delete_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DeleteInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_Delete_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DeleteBatchSizeExceededFaultFault" name="BatchSizeExceededFaultFault" message="tns:EloquaService_Delete_BatchSizeExceededFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/DeleteValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_Delete_ValidationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Retrieve">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/Retrieve" message="tns:EloquaService_Retrieve_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/RetrieveResponse" message="tns:EloquaService_Retrieve_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/RetrieveInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_Retrieve_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/RetrieveUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_Retrieve_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/RetrieveValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_Retrieve_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/RetrieveBatchSizeExceededFaultFault" name="BatchSizeExceededFaultFault" message="tns:EloquaService_Retrieve_BatchSizeExceededFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/Query" message="tns:EloquaService_Query_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/QueryResponse" message="tns:EloquaService_Query_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/QueryUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_Query_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/QueryInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_Query_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/QueryValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_Query_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/QueryQueryTooLargeFaultFault" name="QueryTooLargeFaultFault" message="tns:EloquaService_Query_QueryTooLargeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/QueryOperationTimeIntervalFaultFault" name="OperationTimeIntervalFaultFault" message="tns:EloquaService_Query_OperationTimeIntervalFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicEntityService/QueryInvalidQueryFaultFault" name="InvalidQueryFaultFault" message="tns:EloquaService_Query_InvalidQueryFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAssetTypes">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/ListAssetTypes" message="tns:EloquaService_ListAssetTypes_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/ListAssetTypesResponse" message="tns:EloquaService_ListAssetTypes_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/ListAssetTypesUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_ListAssetTypes_UnexpectedErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DescribeAssetType">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAssetType" message="tns:EloquaService_DescribeAssetType_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAssetTypeResponse" message="tns:EloquaService_DescribeAssetType_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAssetTypeUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_DescribeAssetType_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAssetTypeInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_DescribeAssetType_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAssetTypeValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_DescribeAssetType_ValidationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DescribeAsset">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAsset" message="tns:EloquaService_DescribeAsset_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAssetResponse" message="tns:EloquaService_DescribeAsset_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAssetInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_DescribeAsset_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAssetValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_DescribeAsset_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAssetUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_DescribeAsset_UnexpectedErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAsset">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/CreateAsset" message="tns:EloquaService_CreateAsset_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/CreateAssetResponse" message="tns:EloquaService_CreateAsset_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/CreateAssetValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_CreateAsset_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/CreateAssetBatchSizeExceededFaultFault" name="BatchSizeExceededFaultFault" message="tns:EloquaService_CreateAsset_BatchSizeExceededFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/CreateAssetUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_CreateAsset_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/CreateAssetInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_CreateAsset_InvalidTypeFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAsset">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/UpdateAsset" message="tns:EloquaService_UpdateAsset_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/UpdateAssetResponse" message="tns:EloquaService_UpdateAsset_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/UpdateAssetInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_UpdateAsset_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/UpdateAssetValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_UpdateAsset_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/UpdateAssetUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_UpdateAsset_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/UpdateAssetBatchSizeExceededFaultFault" name="BatchSizeExceededFaultFault" message="tns:EloquaService_UpdateAsset_BatchSizeExceededFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAsset">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DeleteAsset" message="tns:EloquaService_DeleteAsset_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DeleteAssetResponse" message="tns:EloquaService_DeleteAsset_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DeleteAssetBatchSizeExceededFaultFault" name="BatchSizeExceededFaultFault" message="tns:EloquaService_DeleteAsset_BatchSizeExceededFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DeleteAssetValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_DeleteAsset_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DeleteAssetInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_DeleteAsset_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/DeleteAssetUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_DeleteAsset_UnexpectedErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAsset">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/RetrieveAsset" message="tns:EloquaService_RetrieveAsset_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/RetrieveAssetResponse" message="tns:EloquaService_RetrieveAsset_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/RetrieveAssetValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_RetrieveAsset_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/RetrieveAssetBatchSizeExceededFaultFault" name="BatchSizeExceededFaultFault" message="tns:EloquaService_RetrieveAsset_BatchSizeExceededFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/RetrieveAssetInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_RetrieveAsset_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicAssetService/RetrieveAssetUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_RetrieveAsset_UnexpectedErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupMembership">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/ListGroupMembership" message="tns:EloquaService_ListGroupMembership_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/ListGroupMembershipResponse" message="tns:EloquaService_ListGroupMembership_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/ListGroupMembershipUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_ListGroupMembership_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/ListGroupMembershipInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_ListGroupMembership_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/ListGroupMembershipValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_ListGroupMembership_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/ListGroupMembershipInvalidEntityFaultFault" name="InvalidEntityFaultFault" message="tns:EloquaService_ListGroupMembership_InvalidEntityFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddGroupMember">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/AddGroupMember" message="tns:EloquaService_AddGroupMember_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/AddGroupMemberResponse" message="tns:EloquaService_AddGroupMember_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/AddGroupMemberUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_AddGroupMember_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/AddGroupMemberInvalidAssetFaultFault" name="InvalidAssetFaultFault" message="tns:EloquaService_AddGroupMember_InvalidAssetFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/AddGroupMemberValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_AddGroupMember_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/AddGroupMemberInvalidEntityFaultFault" name="InvalidEntityFaultFault" message="tns:EloquaService_AddGroupMember_InvalidEntityFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/AddGroupMemberInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_AddGroupMember_InvalidTypeFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveGroupMember">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/RemoveGroupMember" message="tns:EloquaService_RemoveGroupMember_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/RemoveGroupMemberResponse" message="tns:EloquaService_RemoveGroupMember_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/RemoveGroupMemberInvalidEntityFaultFault" name="InvalidEntityFaultFault" message="tns:EloquaService_RemoveGroupMember_InvalidEntityFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/RemoveGroupMemberUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_RemoveGroupMember_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/RemoveGroupMemberValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_RemoveGroupMember_ValidationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/RemoveGroupMemberInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_RemoveGroupMember_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/GroupMembershipService/RemoveGroupMemberInvalidAssetFaultFault" name="InvalidAssetFaultFault" message="tns:EloquaService_RemoveGroupMember_InvalidAssetFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListActivityTypes">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/ListActivityTypes" message="tns:EloquaService_ListActivityTypes_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/ListActivityTypesResponse" message="tns:EloquaService_ListActivityTypes_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/ListActivityTypesUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_ListActivityTypes_UnexpectedErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DescribeActivityType">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivityType" message="tns:EloquaService_DescribeActivityType_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivityTypeResponse" message="tns:EloquaService_DescribeActivityType_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivityTypeUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_DescribeActivityType_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivityTypeInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_DescribeActivityType_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivityTypeValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_DescribeActivityType_ValidationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DescribeActivity">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivity" message="tns:EloquaService_DescribeActivity_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivityResponse" message="tns:EloquaService_DescribeActivity_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivityInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_DescribeActivity_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivityUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_DescribeActivity_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivityValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_DescribeActivity_ValidationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivities">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetActivities" message="tns:EloquaService_GetActivities_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetActivitiesResponse" message="tns:EloquaService_GetActivities_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetActivitiesInvalidTypeFaultFault" name="InvalidTypeFaultFault" message="tns:EloquaService_GetActivities_InvalidTypeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetActivitiesUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_GetActivities_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetActivitiesInvalidDateRangeFaultFault" name="InvalidDateRangeFaultFault" message="tns:EloquaService_GetActivities_InvalidDateRangeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetActivitiesValidationFaultFault" name="ValidationFaultFault" message="tns:EloquaService_GetActivities_ValidationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailActivitiesForRecipients">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetEmailActivitiesForRecipients" message="tns:EloquaService_GetEmailActivitiesForRecipients_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetEmailActivitiesForRecipientsResponse" message="tns:EloquaService_GetEmailActivitiesForRecipients_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetEmailActivitiesForRecipientsInvalidArgumentFaultFault" name="InvalidArgumentFaultFault" message="tns:EloquaService_GetEmailActivitiesForRecipients_InvalidArgumentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetEmailActivitiesForRecipientsUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_GetEmailActivitiesForRecipients_UnexpectedErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendQuickEmail">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/EmailService/SendQuickEmail" message="tns:EloquaService_SendQuickEmail_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/EmailService/SendQuickEmailResponse" message="tns:EloquaService_SendQuickEmail_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/EmailService/SendQuickEmailUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_SendQuickEmail_UnexpectedErrorFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/EmailService/SendQuickEmailRecordNotFoundFaultFault" name="RecordNotFoundFaultFault" message="tns:EloquaService_SendQuickEmail_RecordNotFoundFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuickEmailStatus">
+      <wsdl:input wsaw:Action="https://secure.eloqua.com/API/1.2/EmailService/GetQuickEmailStatus" message="tns:EloquaService_GetQuickEmailStatus_InputMessage" />
+      <wsdl:output wsaw:Action="https://secure.eloqua.com/API/1.2/EmailService/GetQuickEmailStatusResponse" message="tns:EloquaService_GetQuickEmailStatus_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/EmailService/GetQuickEmailStatusRecordNotFoundFaultFault" name="RecordNotFoundFaultFault" message="tns:EloquaService_GetQuickEmailStatus_RecordNotFoundFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://secure.eloqua.com/API/1.2/EmailService/GetQuickEmailStatusUnexpectedErrorFaultFault" name="UnexpectedErrorFaultFault" message="tns:EloquaService_GetQuickEmailStatus_UnexpectedErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EloquaService" type="tns:EloquaService">
+    <wsp:PolicyReference URI="#EloquaService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListEntityTypes">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicEntityService/ListEntityTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DescribeEntityType">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntityType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DescribeEntity">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicEntityService/DescribeEntity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicEntityService/Create" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="BatchSizeExceededFaultFault">
+        <soap:fault use="literal" name="BatchSizeExceededFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicEntityService/Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BatchSizeExceededFaultFault">
+        <soap:fault use="literal" name="BatchSizeExceededFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicEntityService/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="BatchSizeExceededFaultFault">
+        <soap:fault use="literal" name="BatchSizeExceededFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Retrieve">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicEntityService/Retrieve" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="BatchSizeExceededFaultFault">
+        <soap:fault use="literal" name="BatchSizeExceededFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicEntityService/Query" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="QueryTooLargeFaultFault">
+        <soap:fault use="literal" name="QueryTooLargeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="OperationTimeIntervalFaultFault">
+        <soap:fault use="literal" name="OperationTimeIntervalFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidQueryFaultFault">
+        <soap:fault use="literal" name="InvalidQueryFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListAssetTypes">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicAssetService/ListAssetTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DescribeAssetType">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAssetType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DescribeAsset">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicAssetService/DescribeAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAsset">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicAssetService/CreateAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="BatchSizeExceededFaultFault">
+        <soap:fault use="literal" name="BatchSizeExceededFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAsset">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicAssetService/UpdateAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="BatchSizeExceededFaultFault">
+        <soap:fault use="literal" name="BatchSizeExceededFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAsset">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicAssetService/DeleteAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BatchSizeExceededFaultFault">
+        <soap:fault use="literal" name="BatchSizeExceededFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveAsset">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicAssetService/RetrieveAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="BatchSizeExceededFaultFault">
+        <soap:fault use="literal" name="BatchSizeExceededFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListGroupMembership">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/GroupMembershipService/ListGroupMembership" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidEntityFaultFault">
+        <soap:fault use="literal" name="InvalidEntityFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddGroupMember">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/GroupMembershipService/AddGroupMember" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidAssetFaultFault">
+        <soap:fault use="literal" name="InvalidAssetFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidEntityFaultFault">
+        <soap:fault use="literal" name="InvalidEntityFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveGroupMember">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/GroupMembershipService/RemoveGroupMember" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InvalidEntityFaultFault">
+        <soap:fault use="literal" name="InvalidEntityFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidAssetFaultFault">
+        <soap:fault use="literal" name="InvalidAssetFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListActivityTypes">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicActivityService/ListActivityTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DescribeActivityType">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivityType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DescribeActivity">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicActivityService/DescribeActivity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivities">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetActivities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InvalidTypeFaultFault">
+        <soap:fault use="literal" name="InvalidTypeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidDateRangeFaultFault">
+        <soap:fault use="literal" name="InvalidDateRangeFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFaultFault">
+        <soap:fault use="literal" name="ValidationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailActivitiesForRecipients">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/DynamicActivityService/GetEmailActivitiesForRecipients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentFaultFault">
+        <soap:fault use="literal" name="InvalidArgumentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SendQuickEmail">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/EmailService/SendQuickEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="RecordNotFoundFaultFault">
+        <soap:fault use="literal" name="RecordNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuickEmailStatus">
+      <soap:operation soapAction="https://secure.eloqua.com/API/1.2/EmailService/GetQuickEmailStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="RecordNotFoundFaultFault">
+        <soap:fault use="literal" name="RecordNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UnexpectedErrorFaultFault">
+        <soap:fault use="literal" name="UnexpectedErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Eloqua">
+    <wsdl:port name="EloquaService" binding="tns:EloquaService">
+      <soap:address location="https://secure.eloqua.com/API/1.2/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

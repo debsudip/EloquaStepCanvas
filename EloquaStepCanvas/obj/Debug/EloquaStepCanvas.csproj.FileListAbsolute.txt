@@ -1,0 +1,15 @@
+D:\189156\All_Philips_POC\EloquaStepCanvas\EloquaStepCanvas\EloquaStepCanvas\bin\EloquaStepCanvas.dll
+D:\189156\All_Philips_POC\EloquaStepCanvas\EloquaStepCanvas\EloquaStepCanvas\bin\EloquaStepCanvas.pdb
+D:\189156\All_Philips_POC\EloquaStepCanvas\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.dll
+D:\189156\All_Philips_POC\EloquaStepCanvas\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.pdb
+D:\189156\All_Philips_POC\EloquaStepCanvas\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.csprojResolveAssemblyReference.cache
+D:\Study Materials\StudyMaterials_Eloqua\POCs\EloquaStepCanvas\EloquaStepCanvas\bin\EloquaStepCanvas.dll
+D:\Study Materials\StudyMaterials_Eloqua\POCs\EloquaStepCanvas\EloquaStepCanvas\bin\EloquaStepCanvas.pdb
+D:\Study Materials\StudyMaterials_Eloqua\POCs\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.csprojResolveAssemblyReference.cache
+D:\Study Materials\StudyMaterials_Eloqua\POCs\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.dll
+D:\Study Materials\StudyMaterials_Eloqua\POCs\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.pdb
+D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\bin\EloquaStepCanvas.dll
+D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\bin\EloquaStepCanvas.pdb
+D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.csprojResolveAssemblyReference.cache
+D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.dll
+D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.pdb

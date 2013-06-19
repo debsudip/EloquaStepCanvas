@@ -1,0 +1,4 @@
+D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\bin\EloquaStepCanvas.dll
+D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\bin\EloquaStepCanvas.pdb
+D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\obj\Release\EloquaStepCanvas.dll
+D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\obj\Release\EloquaStepCanvas.pdb
