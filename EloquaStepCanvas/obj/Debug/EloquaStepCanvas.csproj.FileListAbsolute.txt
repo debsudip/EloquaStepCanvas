@@ -12,3 +12,4 @@ D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\bin\EloquaStepCanvas.dll
 D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\bin\EloquaStepCanvas.pdb
 D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.dll
 D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.pdb
+D:\GitHub\EloquaStepCanvas\EloquaStepCanvas\obj\Debug\EloquaStepCanvas.csprojResolveAssemblyReference.cache

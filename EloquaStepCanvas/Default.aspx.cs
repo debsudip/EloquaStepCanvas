@@ -19,8 +19,8 @@ namespace EloquaStepCanvas
         {
             serviceProxy = new EloquaService.EloquaServiceClient();
             programServiceProxy = new EloquaProgramService.ExternalActionServiceClient();
-            stepId = Request.QueryString["STEP_ID"];
-            company = Request.QueryString["COMPANY"];
+            stepId = Request.QueryString["StepID"];
+            company = Request.QueryString["Company"];
 
         }
 
