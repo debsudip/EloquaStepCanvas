@@ -110,28 +110,35 @@ namespace EloquaStepCanvas
             return tmpUpdatedContacts;
         }
 
-        public int CountMembersInStepByStatus(int intPBStepID, int intStepStatus)
-        {
-            string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
-            string strUserID = "Deb.Sudip";
-            string strUserPassword = "Welcome1";
+        //public int CountMembersInStepByStatus(int intPBStepID, int intStepStatus)
+        //{
+        //    string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
+        //    string strUserID = "Deb.Sudip";
+        //    string strUserPassword = "Welcome1";
 
-            programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
-            programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
+        //    programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
+        //    programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
 
-            int intMemberCount = 0;
-            EloquaProgramService.ExternalActionStatus status;
-            status = (EloquaProgramService.ExternalActionStatus)intStepStatus;
-            intMemberCount = programServiceProxy.GetMemberCountInStepByStatus(intPBStepID, EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.AwaitingAction);
-            return intMemberCount;
-        }
+        //    int intMemberCount = 0;
+        //    EloquaProgramService.ExternalActionStatus status;
+        //    status = (EloquaProgramService.ExternalActionStatus)intStepStatus;
+        //    intMemberCount = programServiceProxy.GetMemberCountInStepByStatus(intPBStepID, EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.AwaitingAction);
+        //    return intMemberCount;
+        //}
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
             //Contacts = new List<EloquaContact>();
             // Contacts = ListContactsInStep(Convert.ToInt32(stepId), EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.InProgress, 100);
             int count = 0;
-            count = CountMembersInStepByStatus(Convert.ToInt32(stepId), 0);
+            string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
+            string strUserID = "Deb.Sudip";
+            string strUserPassword = "Welcome1";
+
+            programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
+            programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
+            EloquaInstance objInstance = new EloquaInstance(strInstanceName, strUserID, strUserPassword);
+            count = objInstance.CountMembersInStepByStatus(Convert.ToInt32(stepId), 0);
             lblTimertime.Text = "Timer refreshed at: " + DateTime.Now.ToLongTimeString();
             lblContact.Text = "Total Contacts : " + count.ToString();  // Contacts.Count.ToString();
             lblCompany.Text = "Instance : " + company;

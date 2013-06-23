@@ -36,5 +36,22 @@ namespace EloquaStepCanvas
             dttLastEloquaAPICall = DateTime.Now.ToUniversalTime().Subtract(TimeSpan.FromMilliseconds(1000));
 
         }
+
+        public int CountMembersInStepByStatus(int intPBStepID, int intStepStatus)
+        {
+            //string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
+            //string strUserID = "Deb.Sudip";
+            //string strUserPassword = "Welcome1";
+
+            //programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
+            //programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
+
+            int intMemberCount = 0;
+            EloquaProgramService.ExternalActionStatus status;
+            status = (EloquaProgramService.ExternalActionStatus)intStepStatus;
+            intMemberCount = programServiceProxy.GetMemberCountInStepByStatus(intPBStepID, EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.AwaitingAction);
+            return intMemberCount;
+        }
+
     }
 }
