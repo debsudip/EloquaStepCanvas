@@ -11,7 +11,7 @@ namespace EloquaStepCanvas
     {
         EloquaService.EloquaServiceClient serviceProxy;
         EloquaProgramService.ExternalActionServiceClient programServiceProxy;
-        int stepId;
+        string stepId;
         string company;
         List<EloquaContact> Contacts;
 
@@ -19,7 +19,7 @@ namespace EloquaStepCanvas
         {
             serviceProxy = new EloquaService.EloquaServiceClient();
             programServiceProxy = new EloquaProgramService.ExternalActionServiceClient();
-            stepId = Convert.ToInt32(Request.QueryString["STEP_ID"]);
+            stepId = Request.QueryString["STEP_ID"];
             company = Request.QueryString["COMPANY"];
 
         }
@@ -115,11 +115,12 @@ namespace EloquaStepCanvas
 
             Contacts = new List<EloquaContact>();
 
-            Contacts = ListContactsInStep(stepId, EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.AwaitingAction, 100);
+           Contacts = ListContactsInStep(Convert.ToInt32 (stepId), EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.AwaitingAction, 100);
 
             lblTimertime.Text = "Timer refreshed at: " + DateTime.Now.ToLongTimeString();
             lblContact.Text = "Total Contacts : " + Contacts.Count.ToString();
             lblCompany.Text = "Instance : " + company;
+            lblStepID.Text = "StepID : " + stepId;
         }
     }
 

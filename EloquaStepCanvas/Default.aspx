@@ -24,6 +24,8 @@
     <asp:Label ID="lblContact" runat="server"></asp:Label>
     <br />
     <asp:Label ID="lblCompany" runat="server"></asp:Label>
+    <br />
+    <asp:Label ID="lblStepID" runat="server"></asp:Label>
     </form>
 </body>
 </html>
