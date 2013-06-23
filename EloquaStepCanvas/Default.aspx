@@ -19,9 +19,11 @@
     </asp:Timer>
     <br />
     <br />
-    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="lblTimertime" runat="server"></asp:Label>
     <br />
-    <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="lblContact" runat="server"></asp:Label>
+    <br />
+    <asp:Label ID="lblCompany" runat="server"></asp:Label>
     </form>
 </body>
 </html>

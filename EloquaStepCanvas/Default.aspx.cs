@@ -12,6 +12,7 @@ namespace EloquaStepCanvas
         EloquaService.EloquaServiceClient serviceProxy;
         EloquaProgramService.ExternalActionServiceClient programServiceProxy;
         int stepId;
+        string company;
         List<EloquaContact> Contacts;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -19,9 +20,9 @@ namespace EloquaStepCanvas
             serviceProxy = new EloquaService.EloquaServiceClient();
             programServiceProxy = new EloquaProgramService.ExternalActionServiceClient();
             stepId = Convert.ToInt32(Request.QueryString["STEP_ID"]);
+            company = Request.QueryString["COMPANY"];
+
         }
-
-
 
 
         public List<EloquaContact> ListContactsInStep(int intPBStepID, EloquaStepCanvas.EloquaProgramService.ExternalActionStatus intStepStatus, int intBatchSize)
@@ -30,56 +31,39 @@ namespace EloquaStepCanvas
             EloquaContact tmpContact;
             int intPageNumber = 0;
 
-            try
+
+            string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
+            string strUserID = "Deb.Sudip";
+            string strUserPassword = "Welcome1";
+
+            programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
+            programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
+
+            EloquaProgramService.Member[] result = null;
+
+            result = programServiceProxy.ListMembersInStepByStatus(intPBStepID, intStepStatus, intPageNumber, intBatchSize);
+
+
+            if (result != null)
             {
-                string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
-                string strUserID = "Deb.Sudip";
-                string strUserPassword = "Welcome1";
-
-                programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
-                programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
-
-
-                EloquaProgramService.Member[] result = null;
-                try
+                foreach (var eam in result)
                 {
-                    result = programServiceProxy.ListMembersInStepByStatus(intPBStepID, intStepStatus, intPageNumber, intBatchSize);
-                }
-                catch (Exception ex)
-                {
-                    //Trace.TraceWarning(String.Format("Exception in EloquaInstance:ListContactsInStep:GettingResult {0} :: {1}", ex.Message, ex.InnerException), "Exception");
-                    throw;
-                }
-
-                if (result != null)
-                {
-                    foreach (var eam in result)
-                    {
-                        try
+                   
+                        if (eam != null)
                         {
-                            if (eam != null)
+                            if ((int)eam.EntityType == 1)
                             {
-                                if ((int)eam.EntityType == 1)
-                                {
-                                    tmpContact = new EloquaContact();
-                                    tmpContact.ContactID = eam.EntityId;
-                                    tmpContact.ExternalActionID = eam.Id;
-                                    tmpContactsInStep.Add(tmpContact);
-                                }
+                                tmpContact = new EloquaContact();
+                                tmpContact.ContactID = eam.EntityId;
+                                tmpContact.ExternalActionID = eam.Id;
+                                tmpContactsInStep.Add(tmpContact);
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            // Trace.TraceWarning(String.Format("Exception in EloquaInstance:ListContactsInStep:Individual {0} :: {1}", ex.Message, ex.InnerException), "Exception");
-                        }
                     }
+                   
                 }
-            }
-            catch (Exception ex)
-            {
-                // Trace.TraceWarning(String.Format("Exception in EloquaInstance:ListContactsInStep {0} :: {1} :: {2} :: {3}", ex.Message, ex.InnerException, strInstanceName, intPBStepID.ToString()), "Exception");
-                throw;
-            }
+            
+
             return tmpContactsInStep;
         }
 
@@ -133,9 +117,9 @@ namespace EloquaStepCanvas
 
             Contacts = ListContactsInStep(stepId, EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.AwaitingAction, 100);
 
-            Label1.Text = "Timer refreshed at: " + DateTime.Now.ToLongTimeString();
-            Label2.Text = "Total Contacts : " + Contacts.Count.ToString();
-
+            lblTimertime.Text = "Timer refreshed at: " + DateTime.Now.ToLongTimeString();
+            lblContact.Text = "Total Contacts : " + Contacts.Count.ToString();
+            lblCompany.Text = "Instance : " + company;
         }
     }
 
