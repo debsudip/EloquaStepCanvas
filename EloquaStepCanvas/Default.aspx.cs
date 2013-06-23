@@ -115,7 +115,7 @@ namespace EloquaStepCanvas
 
             Contacts = new List<EloquaContact>();
 
-           Contacts = ListContactsInStep(Convert.ToInt32 (stepId), EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.AwaitingAction, 100);
+           Contacts = ListContactsInStep(Convert.ToInt32 (stepId), EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.Complete, 100);
 
             lblTimertime.Text = "Timer refreshed at: " + DateTime.Now.ToLongTimeString();
             lblContact.Text = "Total Contacts : " + Contacts.Count.ToString();
