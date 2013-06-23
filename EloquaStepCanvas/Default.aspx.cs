@@ -48,21 +48,21 @@ namespace EloquaStepCanvas
             {
                 foreach (var eam in result)
                 {
-                   
-                        if (eam != null)
+
+                    if (eam != null)
+                    {
+                        if ((int)eam.EntityType == 1)
                         {
-                            if ((int)eam.EntityType == 1)
-                            {
-                                tmpContact = new EloquaContact();
-                                tmpContact.ContactID = eam.EntityId;
-                                tmpContact.ExternalActionID = eam.Id;
-                                tmpContactsInStep.Add(tmpContact);
-                            }
+                            tmpContact = new EloquaContact();
+                            tmpContact.ContactID = eam.EntityId;
+                            tmpContact.ExternalActionID = eam.Id;
+                            tmpContactsInStep.Add(tmpContact);
                         }
                     }
-                   
                 }
-            
+
+            }
+
 
             return tmpContactsInStep;
         }
@@ -110,15 +110,30 @@ namespace EloquaStepCanvas
             return tmpUpdatedContacts;
         }
 
+        public int CountMembersInStepByStatus(int intPBStepID, int intStepStatus)
+        {
+            string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
+            string strUserID = "Deb.Sudip";
+            string strUserPassword = "Welcome1";
+
+            programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
+            programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
+
+            int intMemberCount = 0;
+            EloquaProgramService.ExternalActionStatus status;
+            status = (EloquaProgramService.ExternalActionStatus)intStepStatus;
+            intMemberCount = programServiceProxy.GetMemberCountInStepByStatus(intPBStepID, EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.AwaitingAction);
+            return intMemberCount;
+        }
+
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-
-            Contacts = new List<EloquaContact>();
-
-           Contacts = ListContactsInStep(Convert.ToInt32 (stepId), EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.InProgress, 100);
-
+            //Contacts = new List<EloquaContact>();
+            // Contacts = ListContactsInStep(Convert.ToInt32(stepId), EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.InProgress, 100);
+            int count = 0;
+            count = CountMembersInStepByStatus(Convert.ToInt32(stepId), 0);
             lblTimertime.Text = "Timer refreshed at: " + DateTime.Now.ToLongTimeString();
-            lblContact.Text = "Total Contacts : " + Contacts.Count.ToString();
+            lblContact.Text = "Total Contacts : " + count.ToString();  // Contacts.Count.ToString();
             lblCompany.Text = "Instance : " + company;
             lblStepID.Text = "StepID : " + stepId;
         }
