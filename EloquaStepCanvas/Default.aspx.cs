@@ -19,10 +19,35 @@ namespace EloquaStepCanvas
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            serviceProxy = new EloquaService.EloquaServiceClient();
+      
             programServiceProxy = new EloquaProgramService.ExternalActionServiceClient();
-            stepId = Request.QueryString["StepID"];
+            stepId =  Request.QueryString["StepID"];
             company = Request.QueryString["Company"];
+
+            int count = 0;
+            string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
+            string strUserID = "Deb.Sudip";
+            string strUserPassword = "Welcome1";
+
+            programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
+            programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
+            EloquaInstance objInstance = new EloquaInstance(strInstanceName, strUserID, strUserPassword);
+
+            //It counts the total members/contacts available in the current step
+            count = objInstance.CountMembersInStepByStatus(Convert.ToInt32(stepId), 0);
+            lblTimertime.Text = "Timer refreshed at: " + DateTime.Now.ToLongTimeString();
+            lblContact.Text = "Total Contacts : " + count.ToString();  // Contacts.Count.ToString();
+            lblCompany.Text = "Instance : " + company;
+            lblStepID.Text = "StepID : " + stepId;
+
+            //It retrieves the contacts awaiting in the current step
+            Contacts = ListContactsInStep(Convert.ToInt32(stepId), EloquaProgramService.ExternalActionStatus.AwaitingAction, 100);
+            lstTotalContact.Text = "Total Contacts received :" + Contacts.Count.ToString();
+
+            Contacts = SetStatusOfContactsInStep(Convert.ToInt32(stepId), EloquaProgramService.ExternalActionStatus.AwaitingAction, EloquaProgramService.ExternalActionStatus.Complete, Contacts);
+            lstChangeStatus.Text = "Status change of the number of contacts :" + Contacts.Count.ToString();
+ 
+
         }
 
         public List<EloquaContact> ListContactsInStep(int intPBStepID, EloquaStepCanvas.EloquaProgramService.ExternalActionStatus intStepStatus, int intBatchSize)
@@ -99,28 +124,28 @@ namespace EloquaStepCanvas
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-            int count = 0;
-            string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
-            string strUserID = "Deb.Sudip";
-            string strUserPassword = "Welcome1";
+            //int count = 0;
+            //string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
+            //string strUserID = "Deb.Sudip";
+            //string strUserPassword = "Welcome1";
 
-            programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
-            programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
-            EloquaInstance objInstance = new EloquaInstance(strInstanceName, strUserID, strUserPassword);
+            //programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
+            //programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
+            //EloquaInstance objInstance = new EloquaInstance(strInstanceName, strUserID, strUserPassword);
 
-            //It counts the total members/contacts available in the current step
-            count = objInstance.CountMembersInStepByStatus(Convert.ToInt32(stepId), 0);
-            lblTimertime.Text = "Timer refreshed at: " + DateTime.Now.ToLongTimeString();
-            lblContact.Text = "Total Contacts : " + count.ToString();  // Contacts.Count.ToString();
-            lblCompany.Text = "Instance : " + company;
-            lblStepID.Text = "StepID : " + stepId;
+            ////It counts the total members/contacts available in the current step
+            //count = objInstance.CountMembersInStepByStatus(Convert.ToInt32(stepId), 0);
+            //lblTimertime.Text = "Timer refreshed at: " + DateTime.Now.ToLongTimeString();
+            //lblContact.Text = "Total Contacts : " + count.ToString();  // Contacts.Count.ToString();
+            //lblCompany.Text = "Instance : " + company;
+            //lblStepID.Text = "StepID : " + stepId;
 
-            //It retrieves the contacts awaiting in the current step
-            Contacts = ListContactsInStep(Convert.ToInt32(stepId), EloquaProgramService.ExternalActionStatus.AwaitingAction, 100);
-            lstTotalContact.Text = "Total Contacts received :" + Contacts.Count.ToString();
+            ////It retrieves the contacts awaiting in the current step
+            //Contacts = ListContactsInStep(Convert.ToInt32(stepId), EloquaProgramService.ExternalActionStatus.AwaitingAction, 100);
+            //lstTotalContact.Text = "Total Contacts received :" + Contacts.Count.ToString();
 
-            Contacts = SetStatusOfContactsInStep(Convert.ToInt32(stepId), EloquaProgramService.ExternalActionStatus.AwaitingAction, EloquaProgramService.ExternalActionStatus.Complete, Contacts);
-            lstChangeStatus.Text = "Status change of the number of contacts :" + Contacts.Count.ToString();
+            //Contacts = SetStatusOfContactsInStep(Convert.ToInt32(stepId), EloquaProgramService.ExternalActionStatus.AwaitingAction, EloquaProgramService.ExternalActionStatus.Complete, Contacts);
+            //lstChangeStatus.Text = "Status change of the number of contacts :" + Contacts.Count.ToString();
  
         }
 
@@ -128,32 +153,40 @@ namespace EloquaStepCanvas
         /// <summary>
         /// Connect to the instance and create proxy
         /// </summary>
-        private void SetEloquaServices(EloquaServiceClient serviceProxy, EloquaProgramService.ExternalActionServiceClient programServiceProxy)
-        {
-            //string strInstanceName = "CSStuartOrmistonE10";
-            //string strUserID = "Prashanth.Govindaiah";
-            //string strUserPassword = "Infy1234";
+        //private void SetEloquaServices(EloquaServiceClient serviceProxy, EloquaProgramService.ExternalActionServiceClient programServiceProxy)
+        //{
+        //    //string strInstanceName = "CSStuartOrmistonE10";
+        //    //string strUserID = "Prashanth.Govindaiah";
+        //    //string strUserPassword = "Infy1234";
 
-            string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
-            string strUserID = "Deb.Sudip";
-            string strUserPassword = "Welcome1";
+        //    string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
+        //    string strUserID = "Deb.Sudip";
+        //    string strUserPassword = "Welcome1";
 
-            serviceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
-            serviceProxy.ClientCredentials.UserName.Password = strUserPassword;
+        //    serviceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
+        //    serviceProxy.ClientCredentials.UserName.Password = strUserPassword;
 
-            programServiceProxy = new EloquaProgramService.ExternalActionServiceClient();
-            programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
-            programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
-        }
+        //    programServiceProxy = new EloquaProgramService.ExternalActionServiceClient();
+        //    programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
+        //    programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
+        //}
         #endregion
 
         private void InsertDataCard(string email)
         {
             int dataCardId = 0;
             var dataCardIDs = new int[1];
+            serviceProxy = new EloquaService.EloquaServiceClient();
+            string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
+            string strUserID = "Deb.Sudip";
+            string strUserPassword = "Welcome1";
+
+            serviceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
+            serviceProxy.ClientCredentials.UserName.Password = strUserPassword;
+           // EloquaInstance objInstance = new EloquaInstance(strInstanceName, strUserID, strUserPassword);
 
             //Perform the authentication
-            this.SetEloquaServices(serviceProxy, programServiceProxy);
+         //   this.SetEloquaServices(serviceProxy, programServiceProxy);
 
             // Build a DataCardSet Entity Type object - (the ID is the ID of an existing DataCardSet in Eloqua)
             EntityType entityType = new EntityType { ID = 8, Name = "Product_Interested_Info", Type = "DataCardSet" };

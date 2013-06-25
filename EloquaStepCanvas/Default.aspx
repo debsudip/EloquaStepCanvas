@@ -15,7 +15,8 @@
     </asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     </asp:UpdatePanel>
-    <asp:Timer ID="Timer1" runat="server" Interval="10000" ontick="Timer1_Tick">
+    <asp:Timer ID="Timer1" runat="server" Interval="10000" ontick="Timer1_Tick" 
+        Enabled="False">
     </asp:Timer>
     <br />
     <br />
