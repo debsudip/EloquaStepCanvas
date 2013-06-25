@@ -20,7 +20,6 @@ namespace EloquaStepCanvas
             string strInstanceName = InstanceName;
             string strUserID = UserID;
             string strUserPassword = UserPassword;
-
             serviceProxy = new EloquaService.EloquaServiceClient();
             serviceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
             serviceProxy.ClientCredentials.UserName.Password = strUserPassword;
@@ -39,17 +38,11 @@ namespace EloquaStepCanvas
 
         public int CountMembersInStepByStatus(int intPBStepID, int intStepStatus)
         {
-            //string strInstanceName = "CognizantTechnologySolutionsNetherlandsB";
-            //string strUserID = "Deb.Sudip";
-            //string strUserPassword = "Welcome1";
-
-            //programServiceProxy.ClientCredentials.UserName.UserName = strInstanceName + "\\" + strUserID;
-            //programServiceProxy.ClientCredentials.UserName.Password = strUserPassword;
-
             int intMemberCount = 0;
             EloquaProgramService.ExternalActionStatus status;
             status = (EloquaProgramService.ExternalActionStatus)intStepStatus;
             intMemberCount = programServiceProxy.GetMemberCountInStepByStatus(intPBStepID, EloquaStepCanvas.EloquaProgramService.ExternalActionStatus.AwaitingAction);
+
             return intMemberCount;
         }
 

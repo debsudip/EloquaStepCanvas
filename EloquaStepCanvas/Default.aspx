@@ -26,6 +26,12 @@
     <asp:Label ID="lblCompany" runat="server"></asp:Label>
     <br />
     <asp:Label ID="lblStepID" runat="server"></asp:Label>
+    <br />
+    <asp:Label ID="lstTotalContact" runat="server"></asp:Label>
+    <br />
+    <asp:Label ID="lstChangeStatus" runat="server"></asp:Label>
+    <br />
+    <asp:Label ID="lstInsertCDO" runat="server"></asp:Label>
     </form>
 </body>
 </html>
